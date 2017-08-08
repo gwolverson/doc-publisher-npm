@@ -1,0 +1,19 @@
+{
+  "name": "doc-publisher",
+  "version": "0.1.16",
+  "description": "NPM Module for publishing local skills docs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Publish",
+    "docs"
+  ],
+  "author": "Greg Wolverson <gwolverson0509@gmail.com>",
+  "license": "CC-BY-NC-SA-4.0",
+  "dependencies": {
+    "fs-extra": "^3.0.1",
+    "get-module-file": "^0.1.0"
+  }
+}
