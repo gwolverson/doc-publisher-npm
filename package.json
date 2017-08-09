@@ -1,6 +1,6 @@
 {
   "name": "doc-publisher",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "NPM Module for publishing local skills docs",
   "main": "index.js",
   "scripts": {
