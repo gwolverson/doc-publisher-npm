@@ -16,22 +16,28 @@ module.exports = function publishToLocal(dependencyIds) {
   var mainLinkSection = "";
   var description = null;
   var currentDependency = "";
+  var node_modules = './node_modules';
+
+  // test
+  fs.readdirSync(node_modules).forEach(file => {
+    console.log(file);
+  })
 
   for (i = 0; i < dependencyIds.length; i++) {
     currentDependency = dependencyIds[i];
     console.dir("currentDependency: " + currentDependency);
-    var readmeFile = gfm.sync(__dirname, currentDependency, readme);
+    var readmeFile = gfm.sync(node_modules, currentDependency, readme);
 
-    console.log('README file val: ' + readmeFile);
+    console.log('README file: ' + readmeFile);
 
     if (readmeFile != false) {
       fs.copySync(readmeFile, './docs/' + currentDependency + '/index.md');
     }
 
-    console.log('Current dir' + __dirname);
-
     // Get the description of the current dependency it's package.json (for use in the main page link text)
-    var dependencyPackageFileLoc = gfm.sync(__dirname, currentDependency, 'package.json');
+    var dependencyPackageFileLoc = gfm.sync(node_modules, currentDependency, 'package.json');
+
+    console.log('Dep Package File LOC: ' + dependencyPackageFileLoc);
 
     var file = f.readFileSync(dependencyPackageFileLoc, 'utf8');
     var matches = file.match(/"description": "[a-zA-Z0-9 :\/()-]*"/);
