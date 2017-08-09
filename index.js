@@ -28,7 +28,7 @@ module.exports = function publishToLocal(dependencyIds) {
       fs.copySync(readmeFile, './docs/' + currentDependency + '/index.md');
     }
 
-    console.log('Current dep: ' + currentDependency);
+    console.log('Current dir' + __dirname);
 
     // Get the description of the current dependency it's package.json (for use in the main page link text)
     var dependencyPackageFileLoc = gfm.sync(__dirname, currentDependency, 'package.json');
