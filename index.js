@@ -4,11 +4,11 @@ var gfm = require('get-module-file');
 
 module.exports = function publishToLocal(dependencyIds) {
 
-  var readmeFile = 'README.md';
+  var readme = 'README.md';
   var localDocs = './docs/index.md';
 
   // Copy the project README to ./docs/index.md - this is your jumping-off point
-  fs.copySync(readmeFile, localDocs);
+  fs.copySync(readme, localDocs);
 
   // Copy dependency READMEs into dependency-named sub-dirs as index.md files
   // and as we go, remember the descriptions from each project, to be inserted
@@ -20,11 +20,15 @@ module.exports = function publishToLocal(dependencyIds) {
   for (i = 0; i < dependencyIds.length; i++) {
     currentDependency = dependencyIds[i];
     console.dir("currentDependency: " + currentDependency);
-    var readmeFile = gfm.sync(__dirname, currentDependency, readmeFile);
+    var readmeFile = gfm.sync(__dirname, currentDependency, readme);
+
+    console.log('README file val: ' + readmeFile);
 
     if (readmeFile != false) {
       fs.copySync(readmeFile, './docs/' + currentDependency + '/index.md');
     }
+
+    console.log('Current dep: ' + currentDependency);
 
     // Get the description of the current dependency it's package.json (for use in the main page link text)
     var dependencyPackageFileLoc = gfm.sync(__dirname, currentDependency, 'package.json');
